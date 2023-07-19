@@ -56,13 +56,6 @@ class WebhookController extends Controller
                 '*.timestamp' => 'required|integer',
                 '*.event' => 'required',
                 '*.sg_event_id' => 'required|string',
-                '*.sg_message_id' => 'string',
-                '*.category' => function ($attribute, $value, $fail) {
-                    if (!is_null($value) && !in_array(gettype($value), ['string', 'array'])) {
-                        $fail($attribute.' must be a string or array.');
-                    }
-                },
-                '*.category.*' => 'string',
             ]
         );
         if ($validator->fails()) {
@@ -96,7 +89,7 @@ class WebhookController extends Controller
             $newEvent->sg_message_id = $event['sg_message_id'] ?? null;
             $newEvent->payload = $event;
 
-            if (!empty($event['category'])) {
+            if (!empty(($event['category'] ?? null))) {
                 $category = $event['category'];
                 if (gettype($category) === "string") {
                     $newEvent->category = [$category];
