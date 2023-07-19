@@ -25,7 +25,6 @@ class CreateSendgridWebhookEvents extends Migration
             $table->string('sg_message_id')->nullable()->index();
             $table->jsonb('payload');
             $table->jsonb('category')->nullable();
-            $table->index([DB::raw('category(767)')], 'categories_index');
         });
     }
 
