@@ -46,15 +46,17 @@ class WebhookController extends Controller
      */
     public function post(Request $request)
     {
+        
+        
         $payload = $request->input();
         $validator = Validator::make(
             $payload,
             [
                 '*.email' => 'required|email',
                 '*.timestamp' => 'required|integer',
-                '*.event' => 'required|in:' . implode(',', EventEnum::getAll()),
-                '*.sg_event_id' => 'required|string',
-                '*.sg_message_id' => 'required|string',
+                '*.event' => 'required',
+                '*.sg_event_id' => 'string',
+                '*.sg_message_id' => 'string',
                 '*.category' => function ($attribute, $value, $fail) {
                     if (!is_null($value) && !in_array(gettype($value), ['string', 'array'])) {
                         $fail($attribute.' must be a string or array.');
@@ -90,8 +92,8 @@ class WebhookController extends Controller
             $newEvent->timestamp = $event['timestamp'];
             $newEvent->email = $event['email'];
             $newEvent->event = $event['event'];
-            $newEvent->sg_event_id = $event['sg_event_id'];
-            $newEvent->sg_message_id = $event['sg_message_id'];
+            $newEvent->sg_event_id = $event['sg_event_id'] ?? null;
+            $newEvent->sg_message_id = $event['sg_message_id'] ?? null;
             $newEvent->payload = $event;
 
             if (!empty($event['category'])) {
