@@ -92,16 +92,16 @@ class WebhookController extends Controller
             $newEvent->timestamp = $event['timestamp'];
             $newEvent->email = $event['email'];
             $newEvent->event = $event['event'];
-            $newEvent->sg_event_id = $event['sg_event_id'] ?? null;
+            $newEvent->sg_event_id = $event['sg_event_id'];
             $newEvent->sg_message_id = $event['sg_message_id'] ?? null;
             $newEvent->payload = $event;
 
             if (!empty($event['category'])) {
                 $category = $event['category'];
                 if (gettype($category) === "string") {
-                    $newEvent->categories = [$category];
+                    $newEvent->category = [$category];
                 } else {
-                    $newEvent->categories = $category;
+                    $newEvent->category = $category;
                 }
             }
 
