@@ -13,17 +13,19 @@ class CreateSendgridWebhookEvents extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('sendgrid_webhook_events');
         Schema::create('sendgrid_webhook_events', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->timestamps();
 
             $table->timestamp('timestamp')->nullable();
             $table->string('email')->index();
             $table->string('event')->index();
-            $table->string('category')->nullable()->index();
-            $table->string('sg_event_id')->unique();
-            $table->string('sg_message_id')->index();
+            $table->string('sg_event_id')->nullable()->index();
+            $table->string('sg_message_id')->nullable()->index();
             $table->jsonb('payload');
+            $table->jsonb('category')->nullable();
+            $table->index([DB::raw('category(767)')], 'categories_index');
         });
     }
 
