@@ -13,10 +13,7 @@ class UpdateCategoryColumnToArray extends Migration
      */
     public function up()
     {
-          Schema::table('sendgrid_webhook_events', function (Blueprint $table) {
-                $table->jsonb('categories')->nullable();
-                $table->index([DB::raw('categories(767)')], 'categories_index');
-            });
+         
     }
 
     /**
@@ -26,8 +23,6 @@ class UpdateCategoryColumnToArray extends Migration
      */
     public function down()
     {
-        Schema::table('sendgrid_webhook_events', function (Blueprint $table) {
-            $table->dropColumn(['categories']);
-        });
+       
     }
 }
