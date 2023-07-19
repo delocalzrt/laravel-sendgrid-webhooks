@@ -55,7 +55,7 @@ class WebhookController extends Controller
                 '*.email' => 'required|email',
                 '*.timestamp' => 'required|integer',
                 '*.event' => 'required',
-                '*.sg_event_id' => 'string',
+                '*.sg_event_id' => 'required|string',
                 '*.sg_message_id' => 'string',
                 '*.category' => function ($attribute, $value, $fail) {
                     if (!is_null($value) && !in_array(gettype($value), ['string', 'array'])) {
