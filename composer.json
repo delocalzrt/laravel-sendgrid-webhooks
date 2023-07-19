@@ -1,18 +1,18 @@
 {
-    "name": "kitbrennan90/laravel-sendgrid-webhooks",
-    "description": "Laravel package for receiving and storing event webhooks from Sendgrid",
+    "name": "delocalzrt/laravel-sendgrid-webhooks",
+    "description": "Fork from kitbrennan90/laravel-sendgrid-webhooks Laravel package for receiving and storing event webhooks from Sendgrid",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Kit Brennan",
-            "email": "kitbrennan90@gmail.com"
+            "name": "Magyar Bertalan",
+            "email": "magyar.bertalan@delocal.hu"
         }
     ],
     "require": {
         "php": ">=7.0",
         "ext-json": "*",
-        "sendgrid/sendgrid": "~7"
+        "sendgrid/sendgrid": "~8"
     },
     "autoload": {
         "psr-4": {
@@ -29,7 +29,7 @@
         }
     },
     "require-dev": {
-        "laravel/framework": "~5.8.3",
+        "laravel/framework": "~9",
         "orchestra/testbench": "^3.8",
         "phpunit/phpunit": "^7.5"
     }
